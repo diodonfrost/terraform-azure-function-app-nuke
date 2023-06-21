@@ -1,0 +1,37 @@
+name: CI
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 18 * * SUN'
+
+jobs:
+  lint:
+    name: Terraform validate ${{ matrix.terraform_version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        terraform_version:
+          - latest
+          - 1.4.9
+          - 1.1.9
+    steps:
+      - uses: actions/checkout@master
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "${{ matrix.terraform_version }}"
+
+      - name: Terraform version
+        id: version
+        run: terraform version
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+      - name: Terraform init
+        id: init
+        run: terraform init 
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
