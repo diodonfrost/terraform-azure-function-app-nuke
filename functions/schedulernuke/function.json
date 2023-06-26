@@ -1,0 +1,11 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "schedulernuke",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "%ScheduleAppSetting%"
+    }
+  ]
+}
