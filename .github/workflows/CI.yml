@@ -14,7 +14,7 @@ jobs:
       matrix:
         terraform_version:
           - latest
-          - 1.4.9
+          - 1.4.6
           - 1.1.9
     steps:
       - uses: actions/checkout@master
