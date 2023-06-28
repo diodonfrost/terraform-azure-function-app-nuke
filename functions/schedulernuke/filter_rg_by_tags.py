@@ -18,8 +18,8 @@ class FilterResourceGroupsByTags:
     def get_rg_name(self, tag_key: str, tag_value: str) -> Iterator[str]:
         """Filter azure resources using resource type and defined tags.
 
-        Returns all the tagged defined resources that are located in
-        the specified Region for the AWS account.
+        Returns all the tagged defined resource_group that are located in
+        the specified the Azure subscription.
 
         :param str tag_key:
             The key of the tag that you want to filter by.
