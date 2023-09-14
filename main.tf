@@ -26,8 +26,12 @@ data "archive_file" "this" {
   output_path = "${path.module}/functions.zip"
 }
 
+resource "terraform_data" "replacement" {
+  input = data.archive_file.this.output_sha
+}
+
 resource "azurerm_linux_function_app" "this" {
-  name                = "${var.function_app_name_prefix}-${substr(data.archive_file.this.output_sha512, 0, 8)}" # trigger redeploy on zip change
+  name                = var.function_app_name
   resource_group_name = var.resource_group_name
   location            = var.location
 
@@ -64,13 +68,25 @@ resource "azurerm_linux_function_app" "this" {
   }
 
   tags = var.tags
+
+  lifecycle {
+    replace_triggered_by = [
+      terraform_data.replacement
+    ]
+  }
 }
 
 resource "azurerm_application_insights" "this" {
-  name                = "${var.function_app_name_prefix}-${substr(data.archive_file.this.output_sha512, 0, 8)}"
+  name                = var.function_app_name
   resource_group_name = var.resource_group_name
   location            = var.location
   application_type    = "other"
 
   tags = var.tags
+
+  lifecycle {
+    replace_triggered_by = [
+      terraform_data.replacement
+    ]
+  }
 }

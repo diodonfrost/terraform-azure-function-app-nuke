@@ -4,18 +4,13 @@
 
 Terraform module which create an Azure function app which nuke all resources group on the current subscription.
 
-## Terraform versions
-
-For Terraform 0.15.* use version v2.* of this module.
-
-If you are using Terraform 0.11 you can use versions v1.*.
 
 ## Usage
 ```hcl
 module "azure-function-app-nuke" {
   source = "diodonfrost/function-app-nuke/azure"
 
-  function_app_name_prefix      = "my-function-app-name-suffix"
+  function_app_name             = "my-function-app-name-suffix"
   service_plan_name             = "my-service-plan-name"
   storage_account_name          = "my-storage-account-name"
   resource_group_name           = "my-resource-group-name"
@@ -39,7 +34,7 @@ module "azure-function-app-nuke" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_exclude_tags"></a> [exclude\_tags](#input\_exclude\_tags) | Exclude resources with these tags | <pre>object({<br>    key   = string<br>    value = string<br>  })</pre> | `null` | no |
-| <a name="input_function_app_name_prefix"></a> [function\_app\_name\_prefix](#input\_function\_app\_name\_prefix) | The prefix of the Azure Function App name | `string` | n/a | yes |
+| <a name="input_function_app_name"></a> [function\_app\_name](#input\_function\_app\_name) | The prefix of the Azure Function App name | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | The location of the Azure resources | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the Resource Group where the Linux Function App should exist | `string` | n/a | yes |
 | <a name="input_scheduler_ncrontab_expression"></a> [scheduler\_ncrontab\_expression](#input\_scheduler\_ncrontab\_expression) | The NCRONTAB expression which defines the schedule of the Azure function app | `string` | `"0 22 ? * MON-FRI *"` | no |

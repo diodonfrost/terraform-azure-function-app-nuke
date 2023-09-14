@@ -43,7 +43,7 @@ resource "azurerm_resource_group" "to_nuke_2" {
 module "azure-function-app-nuke" {
   source = "../../"
 
-  function_app_name_prefix      = "fpn-${random_pet.suffix.id}"
+  function_app_name             = "fpn-${random_pet.suffix.id}"
   service_plan_name             = "spn-${random_pet.suffix.id}"
   storage_account_name          = "san${random_id.suffix.hex}"
   resource_group_name           = azurerm_resource_group.this.name
