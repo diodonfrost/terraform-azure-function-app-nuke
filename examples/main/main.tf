@@ -40,7 +40,7 @@ resource "azurerm_resource_group" "to_nuke_2" {
 }
 
 
-module "azure-function-app-nuke" {
+module "azure_function_app_nuke" {
   source = "../../"
 
   function_app_name             = "fpn-${random_pet.suffix.id}"
