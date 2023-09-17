@@ -29,7 +29,7 @@ class FilterResourceGroupsByTags:
             The ids of the resources
         """
         exclude_tag = {tag_key: tag_value}
-        resources = self.resource_client.resource_groups.list()
-        for resource in resources:
-            if exclude_tag.items() <= resource.tags.items():
-                yield resource.name
+        rg_list = self.resource_client.resource_groups.list()
+        for rg in rg_list:
+            if rg.tags is None or not exclude_tag.items() <= rg.tags.items():
+                yield rg.name
