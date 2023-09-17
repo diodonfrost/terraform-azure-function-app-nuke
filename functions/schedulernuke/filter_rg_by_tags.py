@@ -2,8 +2,8 @@
 
 from typing import Iterator
 
-from azure.mgmt.resource import ResourceManagementClient
 from azure.identity import DefaultAzureCredential
+from azure.mgmt.resource import ResourceManagementClient
 
 
 class FilterResourceGroupsByTags:
@@ -31,5 +31,5 @@ class FilterResourceGroupsByTags:
         exclude_tag = {tag_key: tag_value}
         resources = self.resource_client.resource_groups.list()
         for resource in resources:
-            if not (exclude_tag.items() <= resource.tags.items()):
+            if exclude_tag.items() <= resource.tags.items():
                 yield resource.name

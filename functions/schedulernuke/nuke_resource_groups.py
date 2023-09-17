@@ -2,8 +2,9 @@
 
 from typing import List
 
-from azure.mgmt.resource import ResourceManagementClient
+from azure.core.exceptions import AzureError
 from azure.identity import DefaultAzureCredential
+from azure.mgmt.resource import ResourceManagementClient
 
 from .filter_rg_by_tags import FilterResourceGroupsByTags
 
@@ -38,6 +39,6 @@ class NukeResourceGroup:
                         resource_group_name=rg_name
                     )
                     print(f"Deleting resource group: {rg_name}")
-                except Exception as err:
+                except AzureError as err:
                     print(f"Failed to delete resource group: {rg_name}")
                     print(f"Error: {err}")
