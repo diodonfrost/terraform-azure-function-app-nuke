@@ -1,0 +1,9 @@
+azure-common==1.*
+azure-core==1.*
+azure-identity==1.*
+azure-mgmt-compute==34.*
+azure-mgmt-core==1.*
+black==24.*
+isort==6.*
+pre_commit==4.*
+ruff==0.12.*
