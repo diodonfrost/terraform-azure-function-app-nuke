@@ -1,4 +1,5 @@
 """Main function entrypoint for Azure Function App."""
+
 import os
 
 import azure.functions as func
