@@ -11,6 +11,7 @@ variable "service_plan_name" {
 variable "storage_account_name" {
   type        = string
   description = "The backend storage account name which will be used by this Function App"
+  default     = null
 }
 
 variable "resource_group_name" {

@@ -1,15 +1,5 @@
 data "azurerm_subscription" "current" {}
 
-resource "azurerm_storage_account" "this" {
-  name                     = var.storage_account_name
-  resource_group_name      = var.resource_group_name
-  location                 = var.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-
-  tags = var.tags
-}
-
 resource "azurerm_service_plan" "this" {
   name                = var.service_plan_name
   resource_group_name = var.resource_group_name
