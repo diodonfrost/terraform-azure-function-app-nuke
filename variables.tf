@@ -6,6 +6,7 @@ variable "function_app_name" {
 variable "service_plan_name" {
   type        = string
   description = "The name of the Azure service plan"
+  default     = null
 }
 
 variable "storage_account_name" {
