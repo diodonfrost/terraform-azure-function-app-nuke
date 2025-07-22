@@ -23,6 +23,15 @@ variable "location" {
   description = "The location of the Azure resources"
 }
 
+variable "application_insights" {
+  description = "Application Insights parameters."
+  type = object({
+    enabled                    = optional(bool, false)
+    log_analytics_workspace_id = optional(string, null)
+  })
+  default = {}
+}
+
 variable "scheduler_ncrontab_expression" {
   description = "The NCRONTAB expression which defines the schedule of the Azure function app"
   type        = string

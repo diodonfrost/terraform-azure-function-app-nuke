@@ -30,10 +30,10 @@ output "function_app_name" {
 
 output "application_insights_id" {
   description = "ID of the associated Application Insights"
-  value       = azurerm_application_insights.this.id
+  value       = try(azurerm_application_insights.this[0].id, null)
 }
 
 output "application_insights_name" {
   description = "Name of the associated Application Insights"
-  value       = azurerm_application_insights.this.name
+  value       = try(azurerm_application_insights.this[0].name, null)
 }
