@@ -28,7 +28,7 @@ variable "location" {
 variable "python_version" {
   type        = string
   description = "The Python version to use for the Azure Function App"
-  default     = "3.9"
+  default     = "3.12"
 }
 
 variable "application_insights" {
