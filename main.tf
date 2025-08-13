@@ -39,7 +39,7 @@ resource "azurerm_linux_function_app" "this" {
     application_insights_connection_string = var.application_insights.enabled ? azurerm_application_insights.this[0].connection_string : null
     application_insights_key               = var.application_insights.enabled ? azurerm_application_insights.this[0].instrumentation_key : null
     application_stack {
-      python_version = "3.9"
+      python_version = var.python_version
     }
     cors {
       allowed_origins = ["https://portal.azure.com"]

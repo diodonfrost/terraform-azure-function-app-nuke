@@ -25,6 +25,12 @@ variable "location" {
   description = "The location of the Azure resources"
 }
 
+variable "python_version" {
+  type        = string
+  description = "The Python version to use for the Azure Function App"
+  default     = "3.9"
+}
+
 variable "application_insights" {
   description = "Application Insights parameters."
   type = object({
