@@ -56,6 +56,7 @@ No modules.
 |------|------|
 | [azurerm_application_insights.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights) | resource |
 | [azurerm_linux_function_app.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_function_app) | resource |
+| [azurerm_monitor_diagnostic_setting.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) | resource |
 | [azurerm_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [azurerm_role_definition.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_definition) | resource |
 | [azurerm_service_plan.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/service_plan) | resource |
@@ -71,6 +72,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_application_insights"></a> [application\_insights](#input\_application\_insights) | Application Insights parameters. | <pre>object({<br/>    enabled                    = optional(bool, false)<br/>    log_analytics_workspace_id = optional(string, null)<br/>  })</pre> | `{}` | no |
+| <a name="input_diagnostic_settings"></a> [diagnostic\_settings](#input\_diagnostic\_settings) | Diagnostic settings for the function app | <pre>object({<br/>    name                           = string<br/>    storage_account_id             = optional(string, null)<br/>    log_analytics_id               = optional(string, null)<br/>    log_analytics_destination_type = optional(string, null)<br/>    eventhub_name                  = optional(string, null)<br/>    eventhub_authorization_rule_id = optional(string, null)<br/>    log_categories                 = optional(list(string), ["FunctionAppLogs"])<br/>    enable_metrics                 = optional(bool, false)<br/>  })</pre> | `null` | no |
 | <a name="input_exclude_tags"></a> [exclude\_tags](#input\_exclude\_tags) | Exclude resources with these tags | <pre>object({<br/>    key   = string<br/>    value = string<br/>  })</pre> | `null` | no |
 | <a name="input_function_app_name"></a> [function\_app\_name](#input\_function\_app\_name) | The prefix of the Azure Function App name | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | The location of the Azure resources | `string` | n/a | yes |

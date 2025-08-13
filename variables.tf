@@ -55,6 +55,21 @@ variable "exclude_tags" {
   default     = null
 }
 
+variable "diagnostic_settings" {
+  description = "Diagnostic settings for the function app"
+  type = object({
+    name                           = string
+    storage_account_id             = optional(string, null)
+    log_analytics_id               = optional(string, null)
+    log_analytics_destination_type = optional(string, null)
+    eventhub_name                  = optional(string, null)
+    eventhub_authorization_rule_id = optional(string, null)
+    log_categories                 = optional(list(string), ["FunctionAppLogs"])
+    enable_metrics                 = optional(bool, false)
+  })
+  default = null
+}
+
 variable "tags" {
   type        = map(string)
   description = "The tags to apply to the Azure resources"
