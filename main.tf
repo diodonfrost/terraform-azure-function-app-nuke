@@ -14,14 +14,14 @@ resource "azurerm_service_plan" "this" {
   tags = var.tags
 }
 
-data "archive_file" "this" {
+resource "archive_file" "this" {
   type        = "zip"
   source_dir  = "${path.module}/functions/"
   output_path = "${path.module}/functions.zip"
 }
 
 resource "terraform_data" "replacement" {
-  input = data.archive_file.this.output_sha
+  input = archive_file.this.output_sha
 }
 
 resource "azurerm_linux_function_app" "this" {
@@ -33,7 +33,7 @@ resource "azurerm_linux_function_app" "this" {
   storage_account_access_key  = azurerm_storage_account.this.primary_access_key
   service_plan_id             = azurerm_service_plan.this.id
   functions_extension_version = "~4"
-  zip_deploy_file             = data.archive_file.this.output_path
+  zip_deploy_file             = archive_file.this.output_path
 
   site_config {
     application_insights_connection_string = var.application_insights.enabled ? azurerm_application_insights.this[0].connection_string : null
