@@ -30,11 +30,10 @@ resource "azurerm_eventhub_namespace" "test" {
 }
 
 resource "azurerm_eventhub" "test" {
-  name                = "acceptanceTestEventHub"
-  namespace_name      = azurerm_eventhub_namespace.test.name
-  resource_group_name = azurerm_resource_group.test.name
-  partition_count     = 1
-  message_retention   = 1
+  name              = "acceptanceTestEventHub"
+  namespace_id      = azurerm_eventhub_namespace.test.id
+  partition_count   = 1
+  message_retention = 1
 }
 
 resource "azurerm_eventhub_namespace_authorization_rule" "test" {
@@ -61,8 +60,8 @@ module "to_event_hub" {
   function_app_name             = "fpn-${random_pet.suffix.id}"
   service_plan_name             = "spn-${random_pet.suffix.id}"
   storage_account_name          = "san${random_id.suffix.hex}"
-  resource_group_name           = azurerm_resource_group.this.name
-  location                      = azurerm_resource_group.this.location
+  resource_group_name           = azurerm_resource_group.test.name
+  location                      = azurerm_resource_group.test.location
   scheduler_ncrontab_expression = "*/10 * * * *"
   exclude_tags = {
     key   = "do_not_delete"
@@ -85,8 +84,8 @@ module "to_log_analytic" {
   function_app_name             = "fpn-${random_pet.suffix.id}"
   service_plan_name             = "spn-${random_pet.suffix.id}"
   storage_account_name          = "san${random_id.suffix.hex}"
-  resource_group_name           = azurerm_resource_group.this.name
-  location                      = azurerm_resource_group.this.location
+  resource_group_name           = azurerm_resource_group.test.name
+  location                      = azurerm_resource_group.test.location
   scheduler_ncrontab_expression = "*/10 * * * *"
   exclude_tags = {
     key   = "do_not_delete"
@@ -108,8 +107,8 @@ module "to_storage_account" {
   function_app_name             = "fpn-${random_pet.suffix.id}"
   service_plan_name             = "spn-${random_pet.suffix.id}"
   storage_account_name          = "san${random_id.suffix.hex}"
-  resource_group_name           = azurerm_resource_group.this.name
-  location                      = azurerm_resource_group.this.location
+  resource_group_name           = azurerm_resource_group.test.name
+  location                      = azurerm_resource_group.test.location
   scheduler_ncrontab_expression = "*/10 * * * *"
   exclude_tags = {
     key   = "do_not_delete"
