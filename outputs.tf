@@ -1,3 +1,8 @@
+output "resource_group_name" {
+  description = "The name of the resource group"
+  value       = var.resource_group_name
+}
+
 output "storage_account_id" {
   description = "The ID of the storage account"
   value       = azurerm_storage_account.this.id
