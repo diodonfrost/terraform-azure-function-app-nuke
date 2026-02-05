@@ -48,7 +48,7 @@ module "azure_function_app_nuke" {
   storage_account_name          = "san${random_id.suffix.hex}"
   resource_group_name           = azurerm_resource_group.this.name
   location                      = azurerm_resource_group.this.location
-  scheduler_ncrontab_expression = "*/10 * * * *"
+  scheduler_ncrontab_expression = "0 0 22 * * 5"
 
   exclude_tags = {
     key   = "to_nuke"

@@ -62,7 +62,7 @@ module "to_event_hub" {
   storage_account_name          = "san${random_id.suffix.hex}"
   resource_group_name           = azurerm_resource_group.test.name
   location                      = azurerm_resource_group.test.location
-  scheduler_ncrontab_expression = "*/10 * * * *"
+  scheduler_ncrontab_expression = "0 0 22 * * 5"
   exclude_tags = {
     key   = "do_not_delete"
     value = "true"
@@ -86,7 +86,7 @@ module "to_log_analytic" {
   storage_account_name          = "san${random_id.suffix.hex}"
   resource_group_name           = azurerm_resource_group.test.name
   location                      = azurerm_resource_group.test.location
-  scheduler_ncrontab_expression = "*/10 * * * *"
+  scheduler_ncrontab_expression = "0 0 22 * * 5"
   exclude_tags = {
     key   = "do_not_delete"
     value = "true"
@@ -109,7 +109,7 @@ module "to_storage_account" {
   storage_account_name          = "san${random_id.suffix.hex}"
   resource_group_name           = azurerm_resource_group.test.name
   location                      = azurerm_resource_group.test.location
-  scheduler_ncrontab_expression = "*/10 * * * *"
+  scheduler_ncrontab_expression = "0 0 22 * * 5"
   exclude_tags = {
     key   = "do_not_delete"
     value = "true"
