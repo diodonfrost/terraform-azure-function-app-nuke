@@ -43,7 +43,7 @@ variable "application_insights" {
 variable "scheduler_ncrontab_expression" {
   description = "The NCRONTAB expression which defines the schedule of the Azure function app"
   type        = string
-  default     = "0 22 ? * MON-FRI *"
+  default     = "0 0 22 * * 5"
 }
 
 variable "exclude_tags" {
