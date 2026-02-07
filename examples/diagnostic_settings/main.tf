@@ -65,9 +65,8 @@ resource "azurerm_storage_account" "test" {
 module "to_event_hub" {
   source = "../../"
 
-  function_app_name             = "fpn-${random_pet.suffix.id}"
-  service_plan_name             = "spn-${random_pet.suffix.id}"
-  storage_account_name          = "san${random_id.suffix.hex}"
+  function_app_name             = "fpn-to-event-hub-${random_pet.suffix.id}"
+  service_plan_name             = "spn-to-event-hub-${random_pet.suffix.id}"
   resource_group_name           = azurerm_resource_group.test.name
   location                      = azurerm_resource_group.test.location
   scheduler_ncrontab_expression = "0 0 22 * * 5"
@@ -89,9 +88,8 @@ module "to_event_hub" {
 module "to_log_analytic" {
   source = "../../"
 
-  function_app_name             = "fpn-${random_pet.suffix.id}"
-  service_plan_name             = "spn-${random_pet.suffix.id}"
-  storage_account_name          = "san${random_id.suffix.hex}"
+  function_app_name             = "fpn-to-log-analytic-${random_pet.suffix.id}"
+  service_plan_name             = "spn-to-log-analytic-${random_pet.suffix.id}"
   resource_group_name           = azurerm_resource_group.test.name
   location                      = azurerm_resource_group.test.location
   scheduler_ncrontab_expression = "0 0 22 * * 5"
@@ -112,9 +110,8 @@ module "to_log_analytic" {
 module "to_storage_account" {
   source = "../../"
 
-  function_app_name             = "fpn-${random_pet.suffix.id}"
-  service_plan_name             = "spn-${random_pet.suffix.id}"
-  storage_account_name          = "san${random_id.suffix.hex}"
+  function_app_name             = "fpn-to-storage-account-${random_pet.suffix.id}"
+  service_plan_name             = "spn-to-storage-account-${random_pet.suffix.id}"
   resource_group_name           = azurerm_resource_group.test.name
   location                      = azurerm_resource_group.test.location
   scheduler_ncrontab_expression = "0 0 22 * * 5"
