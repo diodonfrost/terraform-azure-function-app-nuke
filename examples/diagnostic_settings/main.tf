@@ -21,6 +21,14 @@ resource "azurerm_log_analytics_workspace" "test" {
   retention_in_days   = 30
 }
 
+resource "azurerm_application_insights" "test" {
+  name                = "test-${random_pet.suffix.id}"
+  location            = azurerm_resource_group.test.location
+  resource_group_name = azurerm_resource_group.test.name
+  workspace_id        = azurerm_log_analytics_workspace.test.id
+  application_type    = "other"
+}
+
 resource "azurerm_eventhub_namespace" "test" {
   name                = "test-${random_pet.suffix.id}"
   location            = azurerm_resource_group.test.location
@@ -73,8 +81,8 @@ module "to_event_hub" {
     eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.test.id
   }
   application_insights = {
-    enabled                    = true
-    log_analytics_workspace_id = azurerm_log_analytics_workspace.test.id
+    connection_string   = azurerm_application_insights.test.connection_string
+    instrumentation_key = azurerm_application_insights.test.instrumentation_key
   }
 }
 
@@ -96,8 +104,8 @@ module "to_log_analytic" {
     log_analytics_id = azurerm_log_analytics_workspace.test.id
   }
   application_insights = {
-    enabled                    = true
-    log_analytics_workspace_id = azurerm_log_analytics_workspace.test.id
+    connection_string   = azurerm_application_insights.test.connection_string
+    instrumentation_key = azurerm_application_insights.test.instrumentation_key
   }
 }
 
@@ -119,7 +127,7 @@ module "to_storage_account" {
     storage_account_id = azurerm_storage_account.test.id
   }
   application_insights = {
-    enabled                    = true
-    log_analytics_workspace_id = azurerm_log_analytics_workspace.test.id
+    connection_string   = azurerm_application_insights.test.connection_string
+    instrumentation_key = azurerm_application_insights.test.instrumentation_key
   }
 }
