@@ -33,6 +33,7 @@ module "azure-function-app-nuke" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8 |
 | <a name="requirement_archive"></a> [archive](#requirement\_archive) | 2.7.1 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4.0.0, < 5.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.0.0, < 4.0 |
@@ -55,7 +56,6 @@ No modules.
 | Name | Type |
 |------|------|
 | [archive_file.this](https://registry.terraform.io/providers/hashicorp/archive/2.7.1/docs/resources/file) | resource |
-| [azurerm_application_insights.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_insights) | resource |
 | [azurerm_linux_function_app.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_function_app) | resource |
 | [azurerm_monitor_diagnostic_setting.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) | resource |
 | [azurerm_role_assignment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
@@ -71,7 +71,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_application_insights"></a> [application\_insights](#input\_application\_insights) | Application Insights parameters. | <pre>object({<br/>    enabled                    = optional(bool, false)<br/>    log_analytics_workspace_id = optional(string, null)<br/>  })</pre> | `{}` | no |
+| <a name="input_application_insights"></a> [application\_insights](#input\_application\_insights) | Configuration for using an existing external Application Insights. | <pre>object({<br/>    connection_string   = string<br/>    instrumentation_key = string<br/>  })</pre> | `null` | no |
 | <a name="input_diagnostic_settings"></a> [diagnostic\_settings](#input\_diagnostic\_settings) | Diagnostic settings for the function app | <pre>object({<br/>    name                           = string<br/>    storage_account_id             = optional(string, null)<br/>    log_analytics_id               = optional(string, null)<br/>    log_analytics_destination_type = optional(string, null)<br/>    eventhub_name                  = optional(string, null)<br/>    eventhub_authorization_rule_id = optional(string, null)<br/>    log_categories                 = optional(list(string), ["FunctionAppLogs"])<br/>    enable_metrics                 = optional(bool, false)<br/>  })</pre> | `null` | no |
 | <a name="input_exclude_tags"></a> [exclude\_tags](#input\_exclude\_tags) | Exclude resources with these tags | <pre>object({<br/>    key   = string<br/>    value = string<br/>  })</pre> | `null` | no |
 | <a name="input_function_app_name"></a> [function\_app\_name](#input\_function\_app\_name) | The prefix of the Azure Function App name | `string` | n/a | yes |
@@ -87,8 +87,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_application_insights_id"></a> [application\_insights\_id](#output\_application\_insights\_id) | ID of the associated Application Insights |
-| <a name="output_application_insights_name"></a> [application\_insights\_name](#output\_application\_insights\_name) | Name of the associated Application Insights |
 | <a name="output_function_app_id"></a> [function\_app\_id](#output\_function\_app\_id) | The ID of the function app |
 | <a name="output_function_app_name"></a> [function\_app\_name](#output\_function\_app\_name) | The name of the function app |
 | <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | The name of the resource group |

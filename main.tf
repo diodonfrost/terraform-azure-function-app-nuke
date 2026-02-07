@@ -36,8 +36,8 @@ resource "azurerm_linux_function_app" "this" {
   zip_deploy_file             = archive_file.this.output_path
 
   site_config {
-    application_insights_connection_string = var.application_insights.enabled ? azurerm_application_insights.this[0].connection_string : null
-    application_insights_key               = var.application_insights.enabled ? azurerm_application_insights.this[0].instrumentation_key : null
+    application_insights_connection_string = var.application_insights != null ? var.application_insights.connection_string : null
+    application_insights_key               = var.application_insights != null ? var.application_insights.instrumentation_key : null
     application_stack {
       python_version = var.python_version
     }
@@ -60,24 +60,6 @@ resource "azurerm_linux_function_app" "this" {
   identity {
     type = "SystemAssigned"
   }
-
-  tags = var.tags
-
-  lifecycle {
-    replace_triggered_by = [
-      terraform_data.replacement
-    ]
-  }
-}
-
-resource "azurerm_application_insights" "this" {
-  count = var.application_insights.enabled ? 1 : 0
-
-  name                = var.function_app_name
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  workspace_id        = var.application_insights.log_analytics_workspace_id
-  application_type    = "other"
 
   tags = var.tags
 

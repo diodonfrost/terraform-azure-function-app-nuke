@@ -32,13 +32,3 @@ output "function_app_name" {
   description = "The name of the function app"
   value       = azurerm_linux_function_app.this.name
 }
-
-output "application_insights_id" {
-  description = "ID of the associated Application Insights"
-  value       = try(azurerm_application_insights.this[0].id, null)
-}
-
-output "application_insights_name" {
-  description = "Name of the associated Application Insights"
-  value       = try(azurerm_application_insights.this[0].name, null)
-}

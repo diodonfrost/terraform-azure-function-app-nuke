@@ -32,12 +32,12 @@ variable "python_version" {
 }
 
 variable "application_insights" {
-  description = "Application Insights parameters."
+  description = "Configuration for using an existing external Application Insights."
   type = object({
-    enabled                    = optional(bool, false)
-    log_analytics_workspace_id = optional(string, null)
+    connection_string   = string
+    instrumentation_key = string
   })
-  default = {}
+  default = null
 }
 
 variable "scheduler_ncrontab_expression" {
